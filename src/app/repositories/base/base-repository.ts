@@ -2,10 +2,10 @@ import { Inject } from "@angular/core";
 import {Observable} from "rxjs";
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
 
-export abstract class BaseRepo<T> {
-  private angularFirestore: AngularFirestore = Inject(AngularFirestore);
+export abstract class BaseRepository<T> {
+  protected angularFirestore: AngularFirestore = Inject(AngularFirestore);
   protected collectionName: string = '';
-  private firestoreCollection: AngularFirestoreCollection<T>;
+  protected firestoreCollection: AngularFirestoreCollection<T>;
 
   protected constructor(collectionName: string) {
     this.collectionName = collectionName;
@@ -23,7 +23,7 @@ export abstract class BaseRepo<T> {
   }
 
   createObject(object: T) {
-    this.angularFirestore.collection<T>(this.collectionName).add(object)
+    this.firestoreCollection.add(object)
       .then(() => console.log("New object added successfully."));
   }
 
