@@ -10,6 +10,7 @@ export class Review {
   assistantsRating: number;
   difficulty: number;
   usefulness: number;
+  disciplineId: string;
   workLoad: number;
   hasExam: boolean;
   hasProject: boolean;
@@ -21,7 +22,13 @@ export class Review {
   hasAdditionalMaterials: boolean;
   visible: boolean;
 
-  constructor(id: string, comment: string, publishedAt: Date, courseRating: number, lecturerRating: number, assistantsRating: number, difficulty: number, usefulness: number, workLoad: number, hasExam: boolean, hasProject: boolean, hasMidChecks: boolean, hasHomeworks: boolean, hasOnlineClasses: boolean, hasBooks: boolean, hasPresentations: boolean, hasAdditionalMaterials: boolean, visible: boolean) {
+  constructor(id: string, comment: string, publishedAt: Date, courseRating: number,
+              lecturerRating: number, assistantsRating: number, difficulty: number,
+              usefulness: number, workLoad: number, disciplineId: string, hasExam: boolean,
+              hasProject: boolean, hasMidChecks: boolean, hasHomeworks: boolean,
+              hasOnlineClasses: boolean, hasBooks: boolean, hasPresentations: boolean,
+              hasAdditionalMaterials: boolean, visible: boolean) {
+
     this.id = id;
     this.comment = comment;
     this.publishedAt = publishedAt;
@@ -31,6 +38,7 @@ export class Review {
     this.difficulty = difficulty;
     this.usefulness = usefulness;
     this.workLoad = workLoad;
+    this.disciplineId = disciplineId;
     this.hasExam = hasExam;
     this.hasProject = hasProject;
     this.hasMidChecks = hasMidChecks;
