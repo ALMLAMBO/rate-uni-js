@@ -1,6 +1,3 @@
-import {UUID} from "node:crypto";
-import {comment} from "postcss";
-
 export class Review {
   id: string;
   comment: string;
