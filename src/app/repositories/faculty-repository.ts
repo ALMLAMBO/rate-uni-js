@@ -2,7 +2,11 @@ import {BaseRepository} from "./base/base-repository";
 import {Faculty} from "../models/base/faculty";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment.development";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class FacultyRepository extends BaseRepository<Faculty> {
   constructor() {
     super(environment.facultyCollectionName);

@@ -1,7 +1,10 @@
-import { Inject } from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
 
+@Injectable({
+  providedIn: 'root'
+})
 export abstract class BaseRepository<T> {
   protected angularFirestore: AngularFirestore = Inject(AngularFirestore);
   protected collectionName: string = '';

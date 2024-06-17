@@ -2,7 +2,11 @@ import { BaseRepository } from "./base/base-repository";
 import {Review} from "../models/base/review";
 import {environment} from "../../environments/environment.development";
 import {Observable} from "rxjs";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class ReviewRepository extends BaseRepository<Review>  {
   constructor() {
     super(environment.reviewCollectionName);
