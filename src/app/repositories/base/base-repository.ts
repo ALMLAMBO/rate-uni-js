@@ -25,8 +25,8 @@ export abstract class BaseRepository<T> {
       .valueChanges();
   }
 
-  createObject(object: T) {
-    this.firestoreCollection.add(object)
+  createObject(id: string, object: T) {
+    this.firestoreCollection.doc(id).set(object)
       .then(() => console.log("New object added successfully."));
   }
 
