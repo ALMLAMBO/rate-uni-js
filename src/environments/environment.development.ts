@@ -4,7 +4,9 @@ export const environment = {
   programmeCollectionName: "programmes",
   disciplineCollectionName: "disciplines",
   reviewCollectionName: "reviews",
-  userCollectionName: "users",
   reviewRequestCollectionName: "review-requests",
+  userCollectionName: "users",
   userRequestCollectionName: "user-requests",
+  disciplineProgrammeCollectionName: "discipline-programmes",
+  userDisciplineCollectionName: "users-disciplines",
 };
