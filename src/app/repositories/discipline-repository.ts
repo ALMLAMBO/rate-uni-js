@@ -1,18 +1,14 @@
 import {BaseRepository} from "./base/base-repository";
 import {Discipline} from "../models/base/discipline";
 import {environment} from "../../environments/environment.development";
-import {Observable, of} from "rxjs";
-import {Review} from "../models/base/review";
-import {DisciplineReview} from "../models/link/discipline-review";
-import {ReviewRepository} from "./review-repository";
-import {Inject, Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import {Injectable} from "@angular/core";
+import {UserDiscipline} from "../models/link/user-discipline";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisciplineRepository extends BaseRepository<Discipline> {
-  reviewRepository: ReviewRepository = Inject(ReviewRepository);
-
   constructor() {
     super(environment.disciplineCollectionName);
   }
@@ -23,25 +19,19 @@ export class DisciplineRepository extends BaseRepository<Discipline> {
       .valueChanges();
   }
 
-  getReviewsForDiscipline(disciplineId: string): Observable<Review[]> {
-    let reviews: Review[] = [];
-
+  addUserToDiscipline(disciplineId: string, userId: string) {
     this.angularFirestore
-      .collection<DisciplineReview>(this.collectionName, ref => {
-        return ref.where('disciplineId', '==', disciplineId)
-          .where('status', '==', 'approved')
-      })
-      .valueChanges()
-      .subscribe(disciplineReviews => {
-        return disciplineReviews.map(disciplineReview => {
-          this.reviewRepository
-            .getObject(disciplineReview.reviewId)
-            .subscribe(review => {
-              reviews.push(review);
-            });
-        });
-      })
+      .collection<UserDiscipline>(environment.userDisciplineCollectionName)
+      .doc(`${userId}:${disciplineId}`)
+      .set(new UserDiscipline(userId, disciplineId))
+      .then(() => console.log("User added to discipline"));
+  }
 
-    return of(reviews);
+  removeUserFromDiscipline(disciplineId: string, userId: string) {
+    this.angularFirestore
+      .collection<UserDiscipline>(environment.userDisciplineCollectionName)
+      .doc(`${userId}:${disciplineId}`)
+      .delete()
+      .then(() => console.log("User removed from discipline"));
   }
 }
