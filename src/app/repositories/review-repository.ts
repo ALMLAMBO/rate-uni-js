@@ -3,6 +3,7 @@ import {Review} from "../models/base/review";
 import {environment} from "../../environments/environment.development";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {ReviewRequest} from "../models/base/review-request";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,11 @@ export class ReviewRepository extends BaseRepository<Review>  {
     return this.angularFirestore
       .collection<Review>(this.collectionName, ref => ref.where('disciplineId', '==', disciplineId))
       .valueChanges();
+  }
+
+  getAllReviewsForUser(userId: string): Observable<Review[]> {
+    return this.angularFirestore
+      .collection<Review>(environment.reviewCollectionName, ref => ref.where('userId', '==', userId))
+      .valueChanges()
   }
 }
