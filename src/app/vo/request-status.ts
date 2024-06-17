@@ -1,5 +1,5 @@
 export enum RequestStatus {
-  PENDING = "В процес",
-  APPROVED = "Одобрена",
-  DECLINED = "Отхвърлена"
+  PENDING = "pending",
+  APPROVED = "approved",
+  DECLINED = "rejected"
 }

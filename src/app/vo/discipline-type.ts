@@ -1,4 +1,4 @@
 export enum DisciplineType {
-  ELECTIVE = "избираема",
-  MANDATORY = "задължителна"
+  ELECTIVE = "elective",
+  MANDATORY = "mandatory"
 }
