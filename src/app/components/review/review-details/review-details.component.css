@@ -1,0 +1,5 @@
+.wrap-text {
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: normal;
+}

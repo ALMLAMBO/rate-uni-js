@@ -28,6 +28,25 @@ import { CreateUpdateDisciplineComponent } from './components/faculty/create-upd
 import { ReviewsComponent } from './components/review/reviews/reviews.component';
 import { ReviewDetailsComponent } from './components/review/review-details/review-details.component';
 import { CreateReviewComponent } from './components/review/create-review/create-review.component';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardHeader,
+  MatCardSubtitle,
+  MatCardTitle,
+  MatCardTitleGroup
+} from "@angular/material/card";
+import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import {MatLabel} from "@angular/material/form-field";
+import {MatButton} from "@angular/material/button";
+import {MatDivider} from "@angular/material/divider";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatIcon} from "@angular/material/icon";
+import {provideHttpClient} from "@angular/common/http";
+import {MatList, MatListItem, MatListItemLine, MatListItemMeta} from "@angular/material/list";
+import {MatTabLabelWrapper} from "@angular/material/tabs";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 
 @NgModule({
   declarations: [
@@ -56,7 +75,27 @@ import { CreateReviewComponent } from './components/review/create-review/create-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatGridList,
+    MatGridTile,
+    MatCardSubtitle,
+    MatCardTitleGroup,
+    MatCardTitle,
+    MatLabel,
+    MatButton,
+    MatDivider,
+    MatCheckbox,
+    MatIcon,
+    MatList,
+    MatListItem,
+    MatTabLabelWrapper,
+    MatListItemLine,
+    MatListItemMeta,
+    FlexLayoutModule,
+    FlexLayoutServerModule
   ],
   providers: [
     provideClientHydration(),
@@ -70,7 +109,8 @@ import { CreateReviewComponent } from './components/review/create-review/create-
     })),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

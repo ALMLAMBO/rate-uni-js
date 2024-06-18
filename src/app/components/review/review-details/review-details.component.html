@@ -1,1 +1,127 @@
-<p>review-details works!</p>
+<div style="width: 30%">
+  <mat-card>
+    <mat-card-header>
+      <div class="grid grid-flow-col auto-cols-auto">
+        <div>
+          <mat-card-title>Рецензия за дисциплина {{ discipline.name }}</mat-card-title>
+          <mat-card-subtitle>Дисциплина: {{ discipline.name }}</mat-card-subtitle>
+          <mat-card-subtitle>Лектор: {{ discipline.lecturer }}</mat-card-subtitle>
+          <mat-card-subtitle>Асистент/и: {{ discipline.assistants }}</mat-card-subtitle>
+        </div>
+
+        <div class="flex">
+          <button mat-button class="justify-end">
+            <mat-label>{{ review.publishedAt.toLocaleDateString() }}</mat-label>
+          </button>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-label>Коментар:</mat-label>
+      <mat-divider></mat-divider>
+      <p>{{ review.comment }}</p>
+      <mat-divider></mat-divider>
+
+      <div class="grid grid-cols-3">
+        <div>
+          <mat-label>Има:</mat-label>
+        </div>
+
+        <div></div>
+
+        <div>
+          <mat-label>Оценки:</mat-label>
+        </div>
+      </div>
+
+      <div class="grid grid-flow-col auto-cols-auto">
+        <div class="grid grid-flow-col auto-cols-auto">
+          <div>
+            <mat-list>
+              @if (!review.hasExam) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Изпит</mat-label>
+                </mat-list-item>
+              }
+
+              @if (!review.hasProject) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Проект</mat-label>
+                </mat-list-item>
+              }
+
+              @if (!review.hasMidChecks) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Контролни</mat-label>
+                </mat-list-item>
+              }
+
+              @if (!review.hasHomeworks) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Домашни работи</mat-label>
+                </mat-list-item>
+              }
+            </mat-list>
+          </div>
+
+          <div>
+            <mat-list>
+              @if (!review.hasOnlineClasses) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Онлайн часове</mat-label>
+                </mat-list-item>
+              }
+              @if (!review.hasBooks) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Учебник</mat-label>
+                </mat-list-item>
+              }
+              @if (!review.hasPresentations) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Презентации</mat-label>
+                </mat-list-item>
+              }
+              @if (!review.hasAdditionalMaterials) {
+                <mat-list-item>
+                  <mat-icon fontIcon="school"></mat-icon>
+                  <mat-label [class.wrap-text]="true">Допълнителни материали</mat-label>
+                </mat-list-item>
+              }
+            </mat-list>
+          </div>
+        </div>
+
+        <div>
+          <mat-list>
+            <mat-list-item>
+              <mat-label>Заетост: {{ review.difficulty }}/5</mat-label>
+              <mat-icon fontIcon="star"></mat-icon>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-label>Заетост: {{ review.difficulty }}/5</mat-label>
+              <mat-icon fontIcon="star"></mat-icon>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-label>Заетост: {{ review.difficulty }}/5</mat-label>
+              <mat-icon fontIcon="star"></mat-icon>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-label>Заетост: {{ review.difficulty }}/5</mat-label>
+              <mat-icon fontIcon="star"></mat-icon>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
