@@ -9,6 +9,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavbarComponent } from "./components/main/navbar/navbar.component";
 import { HomeComponent } from './components/main/home/home.component';
+import { UnathorizedComponent } from './components/main/unathorized/unathorized.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
@@ -33,6 +34,7 @@ import { CreateReviewComponent } from './components/review/create-review/create-
     AppComponent,
     NavbarComponent,
     HomeComponent,
+    UnathorizedComponent,
     LoginComponent,
     RegisterComponent,
     UserDetailsComponent,
