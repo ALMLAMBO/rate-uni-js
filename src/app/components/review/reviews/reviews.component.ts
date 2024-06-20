@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input, input} from '@angular/core';
+import {Review} from "../../../models/base/review";
+import {Discipline} from "../../../models/base/discipline";
 
 @Component({
   selector: 'app-reviews',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent {
+  @Input()
+  reviews: Review[] = [
+    {} as Review,
+    {} as Review
+  ];
 
+  @Input()
+  discipline: Discipline = {} as Discipline;
+
+  @Input()
+  programmeName: string = '';
 }
