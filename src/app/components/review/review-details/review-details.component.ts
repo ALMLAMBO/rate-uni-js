@@ -9,8 +9,11 @@ import {Discipline} from "../../../models/base/discipline";
 })
 export class ReviewDetailsComponent {
   @Input()
-  review: Review = {publishedAt: new Date()} as Review;
+  review: Review = {} as Review;
 
   @Input()
-  discipline: Discipline = {lecturer: "ssddfda", assistants: "dfasfdasfasdfasd"} as Discipline;
+  discipline: Discipline = {} as Discipline;
+
+  @Input()
+  programmeName: string = 'Test';
 }
