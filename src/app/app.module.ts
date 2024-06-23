@@ -47,6 +47,9 @@ import {MatList, MatListItem, MatListItemLine, MatListItemMeta} from "@angular/m
 import {MatTabLabelWrapper} from "@angular/material/tabs";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FlexLayoutServerModule} from "@angular/flex-layout/server";
+import { Base64Pipe } from './pipes/base64.pipe';
+import { PageNotFoundComponent } from './components/main/page-not-found/page-not-found.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import {FlexLayoutServerModule} from "@angular/flex-layout/server";
     DisciplineDetailsComponent,
     ReviewsComponent,
     ReviewDetailsComponent,
-    CreateReviewComponent
+    CreateReviewComponent,
+    Base64Pipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,8 @@ import {FlexLayoutServerModule} from "@angular/flex-layout/server";
     MatListItemLine,
     MatListItemMeta,
     FlexLayoutModule,
-    FlexLayoutServerModule
+    FlexLayoutServerModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),

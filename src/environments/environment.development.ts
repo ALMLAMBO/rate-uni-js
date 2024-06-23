@@ -9,4 +9,13 @@ export const environment = {
   userRequestCollectionName: "user-requests",
   disciplineProgrammeCollectionName: "discipline-programmes",
   userDisciplineCollectionName: "users-disciplines",
+
+  urlIds: {
+    university: "universityId",
+    faculty: "facultyId",
+    programme: "programmeId",
+    discipline: "disciplineId",
+    review: "reviewId",
+    user: "userId",
+  }
 };
