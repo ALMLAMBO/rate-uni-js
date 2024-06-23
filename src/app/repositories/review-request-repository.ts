@@ -26,4 +26,10 @@ export class ReviewRequestRepository extends BaseRepository<ReviewRequest> {
       .update({requestStatus: status})
       .then(() => console.log('Request status updated'));
   }
+
+  getReviewRequestByUserId(userId: string): Observable<ReviewRequest[]> {
+    return this.angularFirestore
+      .collection<ReviewRequest>(environment.reviewRequestCollectionName, ref => ref.where('userId', '==', userId))
+      .valueChanges();
+  }
 }

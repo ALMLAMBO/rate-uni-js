@@ -4,7 +4,6 @@ import {environment} from "../../environments/environment.development";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {RequestStatus} from "../vo/request-status";
-import {ReviewRequest} from "../models/base/review-request";
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +21,15 @@ export class UserRequestRepository extends BaseRepository<UserRequest> {
 
   updateRequestStatus(requestId: string, status: RequestStatus): void {
     this.angularFirestore
-      .collection<ReviewRequest>(environment.reviewRequestCollectionName)
+      .collection<UserRequest>(environment.reviewRequestCollectionName)
       .doc(requestId)
       .update({requestStatus: status})
       .then(() => console.log('Request status updated'));
+  }
+
+  getUserRequestByUserId(userId: string): Observable<UserRequest[]> {
+    return this.angularFirestore
+      .collection<UserRequest>(environment.userRequestCollectionName, ref => ref.where('userId', '==', userId))
+      .valueChanges();
   }
 }
