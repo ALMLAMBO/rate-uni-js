@@ -26,7 +26,7 @@ import { ReviewsComponent } from './components/review/reviews/reviews.component'
 import { ReviewDetailsComponent } from './components/review/review-details/review-details.component';
 import { CreateReviewComponent } from './components/review/create-review/create-review.component';
 import {
-  MatCard,
+  MatCard, MatCardActions,
   MatCardContent,
   MatCardHeader,
   MatCardSubtitle,
@@ -106,7 +106,8 @@ import {AngularFireModule} from "@angular/fire/compat";
     FlexLayoutServerModule,
     ReactiveFormsModule,
     MatFormField,
-    MatInput
+    MatInput,
+    MatCardActions
   ],
   providers: [
     provideClientHydration(),
