@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth.service";
-import {user} from "@angular/fire/auth";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,8 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private router: Router,
+              private authService: AuthService) {
 
   }
 
@@ -29,5 +30,7 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.authService.logout();
+    this.router.navigate(['/'])
+      .then(() => console.log('User logged out!'));
   }
 }

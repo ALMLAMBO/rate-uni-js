@@ -25,6 +25,7 @@ import {
 import {
   CreateUpdateDisciplineComponent
 } from "./components/discipline/create-update-discipline/create-update-discipline.component";
+import {CreateReviewComponent} from "./components/review/create-review/create-review.component";
 
 const routes: Routes = [
   {
@@ -94,6 +95,10 @@ const routes: Routes = [
   {
     path: 'create-discipline',
     component: CreateUpdateDisciplineComponent
+  },
+  {
+    path: 'create-review',
+    component: CreateReviewComponent
   },
   {
     path: '**',
