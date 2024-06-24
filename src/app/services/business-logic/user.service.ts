@@ -4,7 +4,6 @@ import {BaseService} from "../base/base.service";
 import {UserRepository} from "../../repositories/user-repository";
 import {UserRequestService} from "./user-request.service";
 import {UserRequest} from "../../models/base/user-request";
-import {randomUUID} from "node:crypto";
 import {RequestStatus} from "../../vo/request-status";
 
 @Injectable({
@@ -48,7 +47,7 @@ export class UserService extends BaseService<User> {
     if (userId) {
       this.userRepository.createObject(userId, user);
       this.userRequestService.createObject(
-        new UserRequest(randomUUID(), userId, user.username, universityName,
+        new UserRequest('', userId, user.username, universityName,
           facultyName, programmeName, facultyNumer, RequestStatus.PENDING, image, new Date()));
     }
   }

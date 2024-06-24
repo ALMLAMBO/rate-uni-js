@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BaseRepository} from "../../repositories/base/base-repository";
 import {Observable} from "rxjs";
-import {randomUUID} from "node:crypto";
+import {v4 as uuid} from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export abstract class BaseService<T> {
   }
 
   createObject(object: T) {
-    this.baseRepository.createObject(randomUUID(), object);
+    this.baseRepository.createObject(uuid(), object);
   }
 
   updateObject(id: string, object: T) {

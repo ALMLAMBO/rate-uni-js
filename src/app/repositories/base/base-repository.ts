@@ -1,6 +1,7 @@
-import {Inject, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
+import {BaseType} from "../../types/base-type";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export abstract class BaseRepository<T> {
   }
 
   createObject(id: string, object: T) {
+    if (<BaseType>object) {
+      (<BaseType>object).id = id;
+    }
+    
     this.firestoreCollection.doc(id).set(object)
       .then(() => console.log("New object added successfully."));
   }
