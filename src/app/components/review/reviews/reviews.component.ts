@@ -13,10 +13,4 @@ export class ReviewsComponent {
     {} as Review,
     {} as Review
   ];
-
-  @Input()
-  discipline: Discipline = {} as Discipline;
-
-  @Input()
-  programmeName: string = '';
 }

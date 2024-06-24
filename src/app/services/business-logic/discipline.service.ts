@@ -3,6 +3,8 @@ import {Discipline} from "../../models/base/discipline";
 import {BaseService} from "../base/base.service";
 import {DisciplineRepository} from "../../repositories/discipline-repository";
 import {ReviewService} from "./review.service";
+import {Observable} from "rxjs";
+import {Programme} from "../../models/base/programme";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,10 @@ export class DisciplineService extends BaseService<Discipline> {
     super(disciplineRepository);
   }
 
+  getDisciplinePorgramme(reviewId: string, disciplineId: string): Observable<Programme> {
+    return this.disciplineRepository.getDisciplinePorgramme(reviewId, disciplineId);
+  }
+  
   getDisciplinesForProgramme(programmeId: string) {
     return this.disciplineRepository.getAllDisciplinesForProgramme(programmeId);
   }

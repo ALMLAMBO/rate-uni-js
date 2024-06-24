@@ -5,15 +5,38 @@ import {Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 import {UserDiscipline} from "../models/link/user-discipline";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {DisciplineProgramme} from "../models/link/discipline-programme";
+import {Programme} from "../models/base/programme";
+import {ProgrammeRepository} from "./programme-repository";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisciplineRepository extends BaseRepository<Discipline> {
-  constructor(private af: AngularFirestore) {
+  constructor(private af: AngularFirestore,
+              private programmeRepository: ProgrammeRepository) {
+    
     super(af, environment.disciplineCollectionName);
   }
 
+  getDisciplinePorgramme(reviewId: string, disciplineId: string): Observable<Programme> {
+    let discipline: Discipline;
+    this.getObject(disciplineId)
+      .subscribe(d => discipline = d);
+    
+    let programmeId: string = '';
+    this.af.collection<DisciplineProgramme>(
+      environment.disciplineProgrammeCollectionName,
+      ref => ref.where("disciplineId", "==", disciplineId)
+        .where("reviewId", "==", reviewId))
+      .valueChanges()
+      .subscribe(disciplineProgrammes => {
+        programmeId = disciplineProgrammes[0].programmeId;
+      });
+    
+    return this.programmeRepository.getObject(programmeId);
+  }
+  
   getAllDisciplinesForProgramme(programmeId: string): Observable<Discipline[]> {
     return this.angularFirestore
       .collection<Discipline>(this.collectionName, ref => ref.where("programmeId", "==", programmeId))

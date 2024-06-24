@@ -11,6 +11,10 @@ export class ReviewService extends BaseService<Review> {
     super(reviewRepository);
   }
 
+  getLatest6Reviews() {
+    return this.reviewRepository.getLatest6Reviews();
+  }
+  
   getReviewsForDiscipline(disciplineId: string) {
     return this.reviewRepository.getAllReviewsForDiscipline(disciplineId);
   }

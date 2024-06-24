@@ -13,6 +13,12 @@ export class ReviewRepository extends BaseRepository<Review>  {
     super(af, environment.reviewCollectionName);
   }
 
+  getLatest6Reviews(): Observable<Review[]> {
+    return this.angularFirestore
+      .collection<Review>(this.collectionName, ref => ref.limit(6).orderBy('createdAt', 'desc'))
+      .valueChanges();
+  }
+  
   getAllReviewsForDiscipline(disciplineId: string): Observable<Review[]> {
     return this.angularFirestore
       .collection<Review>(this.collectionName, ref => ref.where('disciplineId', '==', disciplineId))
