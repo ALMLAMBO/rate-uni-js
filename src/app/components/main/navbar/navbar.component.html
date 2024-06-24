@@ -1,1 +1,25 @@
-<p>navbar works!</p>
+<mat-toolbar color="primary" class="flex justify-between items-center">
+    <a mat-button routerLink="/">RateUni</a>
+    <nav>
+        @if(isLoggedIn) {
+            @if(isAdmin) {
+                <button mat-button [matMenuTriggerFor]="menu">Добави</button>
+                <mat-menu #menu="matMenu">
+                    <a mat-menu-item routerLink="create-uni">Университет</a>
+                    <a mat-menu-item routerLink="create-faculty">Факултет</a>
+                    <a mat-menu-item routerLink="create-programme">Специалност</a>
+                    <a mat-menu-item routerLink="create-discipline">Дисциплина</a>
+                </mat-menu>
+                <a mat-button routerLink="/statistics">Статистики</a>
+            } 
+            @else {
+                <a mat-button routerLink="/user-details">Профил</a>
+            } 
+            <a mat-button (click)="logOut()">Logout</a>
+        } 
+        @else {
+            <a mat-button routerLink="/login">Вход</a>
+            <a mat-button routerLink="/register">Регистрация</a>    
+        }
+    </nav>
+</mat-toolbar>

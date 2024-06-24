@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/main/home/home.component";
 import {UniversitiesComponent} from "./components/university/universities/universities.component";
 import {environment} from "../environments/environment.development";
@@ -15,6 +15,16 @@ import {LoginComponent} from "./components/user/login/login.component";
 import {UserDetailsComponent} from "./components/user/user-details/user-details.component";
 import {AdminStatisticsComponent} from "./components/user/admin-statistics/admin-statistics.component";
 import {PageNotFoundComponent} from "./components/main/page-not-found/page-not-found.component";
+import {
+  CreateUpdateUniversityComponent
+} from "./components/university/create-update-university/create-update-university.component";
+import {CreateUpdateFacultyComponent} from "./components/faculty/create-update-faculty/create-update-faculty.component";
+import {
+  CreateUpdateProgrammeComponent
+} from "./components/programme/create-update-programme/create-update-programme.component";
+import {
+  CreateUpdateDisciplineComponent
+} from "./components/discipline/create-update-discipline/create-update-discipline.component";
 
 const routes: Routes = [
   {
@@ -70,6 +80,22 @@ const routes: Routes = [
     component: AdminStatisticsComponent
   },
   {
+    path: 'create-uni',
+    component: CreateUpdateUniversityComponent
+  },
+  {
+    path: 'create-faculty',
+    component: CreateUpdateFacultyComponent
+  },
+  {
+    path: 'create-programme',
+    component: CreateUpdateProgrammeComponent
+  },
+  {
+    path: 'create-discipline',
+    component: CreateUpdateDisciplineComponent
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
@@ -79,4 +105,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -21,7 +21,6 @@ import { ProgrammeDetailsComponent } from './components/programme/programme-deta
 import { CreateUpdateProgrammeComponent } from './components/programme/create-update-programme/create-update-programme.component';
 import { DisciplinesComponent } from './components/discipline/disciplines/disciplines.component';
 import { DisciplineDetailsComponent } from './components/discipline/discipline-details/discipline-details.component';
-import { CreateUpdateDisciplineComponent } from './components/faculty/create-update-discipline/create-update-discipline.component';
 import { ReviewsComponent } from './components/review/reviews/reviews.component';
 import { ReviewDetailsComponent } from './components/review/review-details/review-details.component';
 import { CreateReviewComponent } from './components/review/create-review/create-review.component';
@@ -35,7 +34,7 @@ import {
 } from "@angular/material/card";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatButton} from "@angular/material/button";
+import {MatAnchor, MatButton} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatIcon} from "@angular/material/icon";
@@ -53,6 +52,9 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {AngularFireModule} from "@angular/fire/compat";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import { CreateUpdateFacultyComponent } from './components/faculty/create-update-faculty/create-update-faculty.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,6 @@ import {AngularFireModule} from "@angular/fire/compat";
     CreateUpdateUniversityComponent,
     FacultiesComponent,
     FacultyDetailsComponent,
-    CreateUpdateDisciplineComponent,
     ProgrammesComponent,
     ProgrammeDetailsComponent,
     CreateUpdateProgrammeComponent,
@@ -79,7 +80,8 @@ import {AngularFireModule} from "@angular/fire/compat";
     ReviewDetailsComponent,
     CreateReviewComponent,
     Base64Pipe,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CreateUpdateFacultyComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,12 @@ import {AngularFireModule} from "@angular/fire/compat";
     ReactiveFormsModule,
     MatFormField,
     MatInput,
-    MatCardActions
+    MatCardActions,
+    MatToolbar,
+    MatAnchor,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem
   ],
   providers: [
     provideClientHydration(),
