@@ -8,19 +8,19 @@ import {RequestStatus} from "../../vo/request-status";
   providedIn: 'root'
 })
 export class ReviewRequestService extends BaseService<ReviewRequest> {
-  constructor() {
-    super(new ReviewRequestRepository());
+  constructor(private reviewRequestRepository: ReviewRequestRepository) {
+    super(reviewRequestRepository);
   }
 
   getReviewRequestByUserId(userId: string) {
-    return (<ReviewRequestRepository>this.baseRepository).getReviewRequestByUserId(userId);
+    return this.reviewRequestRepository.getReviewRequestByUserId(userId);
   }
 
   getActiveReviewRequests() {
-    return (<ReviewRequestRepository>this.baseRepository).getActiveRequests();
+    return this.reviewRequestRepository.getActiveRequests();
   }
 
   updateRequestStatus(requestId: string, status: RequestStatus) {
-    (<ReviewRequestRepository>this.baseRepository).updateRequestStatus(requestId, status);
+    this.reviewRequestRepository.updateRequestStatus(requestId, status);
   }
 }

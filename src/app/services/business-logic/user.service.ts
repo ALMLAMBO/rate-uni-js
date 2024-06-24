@@ -13,12 +13,12 @@ import {RequestStatus} from "../../vo/request-status";
 export class UserService extends BaseService<User> {
   private userRequestService: UserRequestService = Inject(UserRequestService);
 
-  constructor() {
-    super(new UserRepository());
+  constructor(private userRepository: UserRepository) {
+    super(userRepository);
   }
 
   getUserByEmail(email: string) {
-    return (<UserRepository>this.baseRepository).getUserByEmail(email);
+    return this.userRepository.getUserByEmail(email);
   }
 
   isUserRequestApproved(email: string) {
@@ -46,7 +46,7 @@ export class UserService extends BaseService<User> {
                [string, string, string, string, string]) {
 
     if (userId) {
-      (<UserRepository>this.baseRepository).createObject(userId, user);
+      this.userRepository.createObject(userId, user);
       this.userRequestService.createObject(
         new UserRequest(randomUUID(), userId, user.username, universityName,
           facultyName, programmeName, facultyNumer, RequestStatus.PENDING, image, new Date()));

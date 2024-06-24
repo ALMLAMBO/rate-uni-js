@@ -4,13 +4,14 @@ import {environment} from "../../environments/environment.development";
 import {Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 import {UserDiscipline} from "../models/link/user-discipline";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisciplineRepository extends BaseRepository<Discipline> {
-  constructor() {
-    super(environment.disciplineCollectionName);
+  constructor(private af: AngularFirestore) {
+    super(af, environment.disciplineCollectionName);
   }
 
   getAllDisciplinesForProgramme(programmeId: string): Observable<Discipline[]> {

@@ -1,11 +1,8 @@
-import { NgModule } from '@angular/core';
+import {importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavbarComponent } from "./components/main/navbar/navbar.component";
 import { HomeComponent } from './components/main/home/home.component';
@@ -37,7 +34,7 @@ import {
   MatCardTitleGroup
 } from "@angular/material/card";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
-import {MatLabel} from "@angular/material/form-field";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatButton} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 import {MatCheckbox} from "@angular/material/checkbox";
@@ -50,6 +47,12 @@ import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 import { Base64Pipe } from './pipes/base64.pipe';
 import { PageNotFoundComponent } from './components/main/page-not-found/page-not-found.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatInput} from "@angular/material/input";
+import {environment} from "../environments/environment.development";
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import {AngularFireModule} from "@angular/fire/compat";
 
 @NgModule({
   declarations: [
@@ -101,22 +104,20 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListItemMeta,
     FlexLayoutModule,
     FlexLayoutServerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput
   ],
   providers: [
     provideClientHydration(),
-    provideFirebaseApp(() => initializeApp({
-      "projectId":"rate-uni-js-project",
-      "appId":"1:947898370714:web:bd2ce7351d5d12fb94ad23",
-      "storageBucket":"rate-uni-js-project.appspot.com",
-      "apiKey":"AIzaSyApfYN7FqfGhhtB6PwBI_2Ztlb7v4ntLe8",
-      "authDomain":"rate-uni-js-project.firebaseapp.com",
-      "messagingSenderId":"947898370714"
-    })),
+    provideAnimationsAsync(),
+    provideHttpClient(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseOptions)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideAnimationsAsync(),
-    provideHttpClient()
+    importProvidersFrom([
+      AngularFireModule.initializeApp(environment.firebaseOptions)
+    ])
   ],
   bootstrap: [AppComponent]
 })

@@ -8,19 +8,19 @@ import {RequestStatus} from "../../vo/request-status";
   providedIn: 'root'
 })
 export class UserRequestService extends BaseService<UserRequest> {
-  constructor() {
-    super(new UserRequestRepository());
+  constructor(private userRequestRepository: UserRequestRepository) {
+    super(userRequestRepository);
   }
 
   getUserRequestByUserId(userId: string) {
-    return (<UserRequestRepository>this.baseRepository).getUserRequestByUserId(userId);
+    return this.userRequestRepository.getUserRequestByUserId(userId);
   }
 
   getActiveUserRequests() {
-    return (<UserRequestRepository>this.baseRepository).getActiveRequests();
+    return this.userRequestRepository.getActiveRequests();
   }
 
   updateRequestStatus(requestId: string, status: RequestStatus) {
-    (<UserRequestRepository>this.baseRepository).updateRequestStatus(requestId, status);
+    this.userRequestRepository.updateRequestStatus(requestId, status);
   }
 }

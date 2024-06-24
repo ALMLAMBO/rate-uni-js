@@ -4,13 +4,14 @@ import {environment} from "../../environments/environment.development";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {UserRequest} from "../models/base/user-request";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRepository extends BaseRepository<User> {
-  constructor() {
-    super(environment.userCollectionName);
+  constructor(private af: AngularFirestore) {
+    super(af, environment.userCollectionName);
   }
 
   getUserByEmail(email: string): Observable<User[]> {

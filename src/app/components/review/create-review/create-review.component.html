@@ -1,1 +1,8 @@
-<p>create-review works!</p>
+<div class="container">
+    <h2>Create review</h2>
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+        <mat-form-field>
+            <mat-label>University</mat-label>
+        </mat-form-field>
+    </form>
+</div>

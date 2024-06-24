@@ -11,12 +11,12 @@ import {Programme} from "../../models/base/programme";
 export class FacultyService extends BaseService<Faculty> {
   private programmeService: ProgrammeService = Inject(ProgrammeService);
 
-  constructor() {
-    super(new FacultyRepository());
+  constructor(private facultyRepository: FacultyRepository) {
+    super(facultyRepository);
   }
 
   getFacultyByUniversityId(universityId: string) {
-    return (<FacultyRepository>this.baseRepository).getFacultiesForUniversity(universityId);
+    return this.facultyRepository.getFacultiesForUniversity(universityId);
   }
 
   deleteFaculty(facultyId: string) {

@@ -3,13 +3,14 @@ import {Programme} from "../models/base/programme";
 import {environment} from "../../environments/environment.development";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgrammeRepository extends BaseRepository<Programme> {
-  constructor() {
-    super(environment.programmeCollectionName);
+  constructor(private af: AngularFirestore) {
+    super(af, environment.programmeCollectionName);
   }
 
   getAllProgrammesForFaculty(facultyId: string): Observable<Programme[]> {

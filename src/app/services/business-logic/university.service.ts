@@ -11,8 +11,8 @@ import {Faculty} from "../../models/base/faculty";
 export class UniversityService extends BaseService<University> {
   private facultyService: FacultyService = Inject(FacultyService);
 
-  constructor() {
-    super(new UniversityRepository());
+  constructor(private universityRepository: UniversityRepository) {
+    super(universityRepository);
   }
 
   deleteUniversity(universityId: string) {

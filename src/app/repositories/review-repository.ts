@@ -3,14 +3,14 @@ import {Review} from "../models/base/review";
 import {environment} from "../../environments/environment.development";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
-import {ReviewRequest} from "../models/base/review-request";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewRepository extends BaseRepository<Review>  {
-  constructor() {
-    super(environment.reviewCollectionName);
+  constructor(private af: AngularFirestore) {
+    super(af, environment.reviewCollectionName);
   }
 
   getAllReviewsForDiscipline(disciplineId: string): Observable<Review[]> {

@@ -7,16 +7,16 @@ import {ReviewRepository} from "../../repositories/review-repository";
   providedIn: 'root'
 })
 export class ReviewService extends BaseService<Review> {
-  constructor() {
-    super(new ReviewRepository());
+  constructor(private reviewRepository: ReviewRepository) {
+    super(reviewRepository);
   }
 
   getReviewsForDiscipline(disciplineId: string) {
-    return (<ReviewRepository>this.baseRepository).getAllReviewsForDiscipline(disciplineId);
+    return this.reviewRepository.getAllReviewsForDiscipline(disciplineId);
   }
 
   getReviewsForUser(userId: string) {
-    return (<ReviewRepository>this.baseRepository).getAllReviewsForUser(userId);
+    return this.reviewRepository.getAllReviewsForUser(userId);
   }
 
   deleteReview(reviewId: string) {

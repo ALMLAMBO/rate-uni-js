@@ -10,12 +10,12 @@ import {DisciplineService} from "./discipline.service";
 export class ProgrammeService extends BaseService<Programme> {
   private disciplineService: DisciplineService = Inject(DisciplineService);
 
-  constructor() {
-    super(new ProgrammeRepository());
+  constructor(private programmeRepository: ProgrammeRepository) {
+    super(programmeRepository);
   }
 
   getProgrammesForFaculty(facultyId: string) {
-    return (<ProgrammeRepository>this.baseRepository).getAllProgrammesForFaculty(facultyId);
+    return this.programmeRepository.getAllProgrammesForFaculty(facultyId);
   }
 
   deleteProgramme(programmeId: string) {

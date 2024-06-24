@@ -6,11 +6,10 @@ import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat
   providedIn: 'root'
 })
 export abstract class BaseRepository<T> {
-  protected angularFirestore: AngularFirestore = Inject(AngularFirestore);
   protected collectionName: string = '';
   protected firestoreCollection: AngularFirestoreCollection<T>;
 
-  protected constructor(collectionName: string) {
+  protected constructor(protected angularFirestore: AngularFirestore, collectionName: string) {
     this.collectionName = collectionName;
     this.firestoreCollection = this.angularFirestore.collection<T>(collectionName);
   }
