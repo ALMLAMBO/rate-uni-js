@@ -55,6 +55,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import { CreateUpdateFacultyComponent } from './components/faculty/create-update-faculty/create-update-faculty.component';
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -114,7 +115,9 @@ import { CreateUpdateFacultyComponent } from './components/faculty/create-update
     MatAnchor,
     MatMenuTrigger,
     MatMenu,
-    MatMenuItem
+    MatMenuItem,
+    MatSelect,
+    MatOption
   ],
   providers: [
     provideClientHydration(),

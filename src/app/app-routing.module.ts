@@ -41,12 +41,20 @@ const routes: Routes = [
     component: UniversityDetailsComponent
   },
   {
+    path: `universities/:${environment.urlIds.university}/create`,
+    component: CreateUpdateUniversityComponent
+  },
+  {
     path: `universities/:${environment.urlIds.university}/faculties`,
     component: FacultiesComponent
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}`,
     component: FacultyDetailsComponent
+  },
+  {
+    path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/update`,
+    component: CreateUpdateFacultyComponent
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes`,
@@ -57,12 +65,20 @@ const routes: Routes = [
     component: ProgrammeDetailsComponent
   },
   {
+    path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/update`,
+    component: CreateUpdateProgrammeComponent
+  },
+  {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/disciplines`,
     component: DisciplinesComponent
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/disciplines/:${environment.urlIds.discipline}`,
     component: DisciplineDetailsComponent
+  },
+  {
+    path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/disciplines/:${environment.urlIds.discipline}/update`,
+    component: CreateUpdateDisciplineComponent
   },
   {
     path: 'register',
