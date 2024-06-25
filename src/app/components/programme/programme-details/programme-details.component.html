@@ -1,1 +1,13 @@
-<p>programme-details works!</p>
+<div class="flex mx-10 mb-3">
+    <h1 class="justify-center">{{ programme.title }}</h1>
+</div>
+
+<div class="flex mx-10 mb-3">
+    <h3>Описание</h3>
+    <p>
+        {{ programme.description }}
+    </p>
+</div>
+
+<app-disciplines 
+        [disciplines]="disciplines"></app-disciplines>
