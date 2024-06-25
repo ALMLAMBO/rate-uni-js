@@ -5,6 +5,7 @@ import {DisciplineRepository} from "../../repositories/discipline-repository";
 import {ReviewService} from "./review.service";
 import {Observable} from "rxjs";
 import {Programme} from "../../models/base/programme";
+import {v4 as uuid} from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class DisciplineService extends BaseService<Discipline> {
     super(disciplineRepository);
   }
 
+  createDiscipline(programmeId: string, discipline: Discipline) {
+    this.disciplineRepository.createDiscipline(uuid(), programmeId, discipline);
+  }
+  
   getDisciplinePorgramme(reviewId: string, disciplineId: string): Observable<Programme> {
     return this.disciplineRepository.getDisciplinePorgramme(reviewId, disciplineId);
   }

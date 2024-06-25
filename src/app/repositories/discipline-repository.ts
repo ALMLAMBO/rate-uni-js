@@ -8,13 +8,15 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {DisciplineProgramme} from "../models/link/discipline-programme";
 import {Programme} from "../models/base/programme";
 import {ProgrammeRepository} from "./programme-repository";
+import {DisciplineProgrammeRepository} from "./discipline-programme-repository";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisciplineRepository extends BaseRepository<Discipline> {
   constructor(private af: AngularFirestore,
-              private programmeRepository: ProgrammeRepository) {
+              private programmeRepository: ProgrammeRepository,
+              private disciplineProgrammeRepository: DisciplineProgrammeRepository) {
     
     super(af, environment.disciplineCollectionName);
   }
@@ -38,9 +40,20 @@ export class DisciplineRepository extends BaseRepository<Discipline> {
   }
   
   getAllDisciplinesForProgramme(programmeId: string): Observable<Discipline[]> {
-    return this.angularFirestore
-      .collection<Discipline>(this.collectionName, ref => ref.where("programmeId", "==", programmeId))
-      .valueChanges();
+    let disciplines: Discipline[] = [];
+
+    this.af
+      .collection<DisciplineProgramme>(environment.disciplineProgrammeCollectionName, 
+          ref => ref.where("programmeId", "==", programmeId))
+      .valueChanges()
+      .subscribe(disciplineProgrammes => {
+        disciplineProgrammes.forEach(disciplineProgramme => {
+          this.getObject(disciplineProgramme.disciplineId)
+            .subscribe(discipline => disciplines.push(discipline));
+        });
+      })
+
+    return of(disciplines);
   }
 
   getAllDisciplinesForUser(userId: string): Observable<Discipline[]> {
@@ -59,6 +72,13 @@ export class DisciplineRepository extends BaseRepository<Discipline> {
     return of(disciplines);
   }
 
+  createDiscipline(id: string, programmeId: string, discipline: Discipline) {
+    let disciplineProgramme: DisciplineProgramme = new DisciplineProgramme(programmeId, id);
+    this.createObject(id, discipline);
+    disciplineProgramme = Object.assign({}, disciplineProgramme);
+    this.disciplineProgrammeRepository.createObject(`${id}:${programmeId}`, disciplineProgramme);
+  }
+  
   addUserToDiscipline(disciplineId: string, userId: string) {
     this.angularFirestore
       .collection<UserDiscipline>(environment.userDisciplineCollectionName)

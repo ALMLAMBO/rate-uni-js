@@ -56,13 +56,15 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import { CreateUpdateFacultyComponent } from './components/faculty/create-update-faculty/create-update-faculty.component';
 import {MatOption, MatSelect} from "@angular/material/select";
+import {
+  CreateUpdateDisciplineComponent
+} from "./components/discipline/create-update-discipline/create-update-discipline.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    UnathorizedComponent,
     LoginComponent,
     RegisterComponent,
     UserDetailsComponent,
@@ -72,17 +74,19 @@ import {MatOption, MatSelect} from "@angular/material/select";
     CreateUpdateUniversityComponent,
     FacultiesComponent,
     FacultyDetailsComponent,
+    CreateUpdateFacultyComponent,
     ProgrammesComponent,
     ProgrammeDetailsComponent,
     CreateUpdateProgrammeComponent,
     DisciplinesComponent,
     DisciplineDetailsComponent,
+    CreateUpdateDisciplineComponent,
     ReviewsComponent,
     ReviewDetailsComponent,
     CreateReviewComponent,
-    Base64Pipe,
     PageNotFoundComponent,
-    CreateUpdateFacultyComponent
+    UnathorizedComponent,
+    Base64Pipe,
   ],
   imports: [
     BrowserModule,

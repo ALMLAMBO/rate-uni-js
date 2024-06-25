@@ -14,6 +14,9 @@ import {environment} from "../../../../environments/environment.development";
 export class ProgrammeDetailsComponent implements OnInit {
   programme: Programme = {} as Programme;
   disciplines: Discipline[] = [];
+  universityId = '';
+  facultyId = '';
+  programmeId = '';
 
   constructor(private route: ActivatedRoute,
               private programmeService: ProgrammeService,
@@ -21,17 +24,18 @@ export class ProgrammeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let programmeId = '';
     this.route.params.subscribe(params => {
-      programmeId = params[environment.urlIds.programme];
+      this.universityId = params[environment.urlIds.university];
+      this.facultyId = params[environment.urlIds.faculty];
+      this.programmeId = params[environment.urlIds.programme];
     });
 
-    this.programmeService.getObjectById(programmeId)
+    this.programmeService.getObjectById(this.programmeId)
       .subscribe((data: Programme) => {
         this.programme = data;
       })
 
-    this.disciplineService.getDisciplinesForProgramme(programmeId)
+    this.disciplineService.getDisciplinesForProgramme(this.programmeId)
       .subscribe((data: Discipline[]) => {
         this.disciplines = data;
       });
