@@ -45,7 +45,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {FlexLayoutServerModule} from "@angular/flex-layout/server";
 import { Base64Pipe } from './pipes/base64.pipe';
 import { PageNotFoundComponent } from './components/main/page-not-found/page-not-found.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {environment} from "../environments/environment.development";
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -121,7 +121,8 @@ import {
     MatMenu,
     MatMenuItem,
     MatSelect,
-    MatOption
+    MatOption,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

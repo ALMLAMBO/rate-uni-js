@@ -43,10 +43,7 @@ export class AuthService {
               return;
             }
 
-            if (this.userService.isUserRequestApproved(email)) {
-              loggedIn = true;
-              return;
-            }
+            loggedIn = true;
           });
       });
     
