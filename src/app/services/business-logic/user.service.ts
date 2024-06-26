@@ -10,9 +10,9 @@ import {RequestStatus} from "../../vo/request-status";
   providedIn: 'root'
 })
 export class UserService extends BaseService<User> {
-  private userRequestService: UserRequestService = Inject(UserRequestService);
-
-  constructor(private userRepository: UserRepository) {
+  constructor(private userRepository: UserRepository,
+              private userRequestService: UserRequestService) {
+    
     super(userRepository);
   }
 
@@ -45,10 +45,10 @@ export class UserService extends BaseService<User> {
                [string, string, string, string]) {
 
     if (userId) {
+      let userRequest = Object.assign({}, new UserRequest('', userId, user.username, universityName,
+        facultyName, programmeName, user.facultyNumber, RequestStatus.PENDING, '', new Date()));
       this.userRepository.createObject(userId, user);
-      this.userRequestService.createObject(
-        new UserRequest('', userId, user.username, universityName,
-          facultyName, programmeName, facultyNumber, RequestStatus.PENDING, '', new Date()));
+      this.userRequestService.createObject(userRequest);
     }
   }
 }

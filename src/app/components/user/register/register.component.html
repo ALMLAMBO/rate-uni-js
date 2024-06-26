@@ -1,1 +1,74 @@
-<p>register works!</p>
+<div>
+    <h1 class="mx-4 my-4">Register</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>University</mat-label>
+                <mat-select (selectionChange)="updateUniversity($event)">
+                    @for (university of universities; track university) {
+                        <mat-option [value]="university.id">
+                            {{ university.name }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Faculty</mat-label>
+                <mat-select (selectionChange)="updateFaculty($event)">
+                    @for (faculty of faculties; track faculty) {
+                        <mat-option [value]="faculty.id">
+                            {{ faculty.name }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Programme</mat-label>
+                <mat-select (selectionChange)="updateProgramme($event)">
+                    @for (programme of programmes; track programme) {
+                        <mat-option [value]="programme.id">
+                            {{ programme.title }}
+                        </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+        </div>
+
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+            </mat-form-field>
+        </div>
+
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Faculty Number</mat-label>
+                <input matInput formControlName="facultyNumber">
+            </mat-form-field>
+        </div>
+        
+        <div class="mx-4 my-4">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="mx-4 my-4">
+            <button mat-button color="primary" type="submit">Login</button>
+        </div>
+    </form>
+</div>

@@ -3,7 +3,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {User} from "../../models/base/user";
 import {UserService} from "../business-logic/user.service";
 import {Role} from "../../vo/role";
-import {local} from "d3";
+import CryptoJS from "crypto-js";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,8 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(value => {
+        user.role = Role.STUDENT;
+        user.password = CryptoJS.SHA3(user.password).toString();
         this.userService
           .createUser(value.user?.uid, user,
             [universityName, facultyName, programmeName, facultyNumber]);
