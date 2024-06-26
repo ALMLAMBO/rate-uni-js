@@ -27,6 +27,7 @@ import {
 } from "./components/discipline/create-update-discipline/create-update-discipline.component";
 import {CreateReviewComponent} from "./components/review/create-review/create-review.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {UnathorizedComponent} from "./components/main/unathorized/unathorized.component";
 
 const routes: Routes = [
   {
@@ -127,6 +128,10 @@ const routes: Routes = [
     path: 'create-review',
     component: CreateReviewComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'unauthorized',
+    component: UnathorizedComponent
   },
   {
     path: '**',

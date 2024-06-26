@@ -6,7 +6,7 @@ export class User {
   email: string;
   facultyNumber: string;
   password: string;
-  role: Role;
+  role: string;
 
   constructor(id: string, username: string, email: string, facultyNumber: string, password: string, role: Role) {
     this.id = id;
@@ -14,6 +14,6 @@ export class User {
     this.email = email;
     this.facultyNumber = facultyNumber;
     this.password = password;
-    this.role = role;
+    this.role = role.toString();
   }
 }

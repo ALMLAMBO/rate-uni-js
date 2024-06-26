@@ -19,7 +19,7 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(user.email, user.password)
       .then(value => {
-        user.role = Role.STUDENT;
+        user.role = Role.STUDENT.toString();
         user.password = CryptoJS.SHA3(user.password).toString();
         this.userService
           .createUser(value.user?.uid, user,

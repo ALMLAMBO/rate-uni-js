@@ -9,7 +9,6 @@ import {UserService} from "../services/business-logic/user.service";
 import {Injectable} from "@angular/core";
 import {Observable, of} from "rxjs";
 import {User} from "../models/base/user";
-import {AuthService} from "../services/auth/auth.service";
 import {Role} from "../vo/role";
 
 @Injectable({
@@ -18,37 +17,36 @@ import {Role} from "../vo/role";
 })
 export class AuthGuard implements CanActivate {
   constructor(private userService: UserService,
-              private authService: AuthService, 
               private router: Router) {}
-
+  
+  currentUser: User = {} as User;
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean {
-    const requiredRoles = next.data['roles'] || [];
-    let currentUser: any;
-    this.authService.getCurrentUser()
-      .then(user => {
-        currentUser = user;
-      });
+    
+    let userId: string | null = localStorage.getItem('userId');
 
-    if (!currentUser) {
+    if (!userId) {
       return of(this.router.parseUrl('/login'));
     }
-
-    let dbUser: User = {} as User;
-    this.userService.getObjectById(currentUser.uid)
-      .subscribe(user => dbUser = user);
     
-    if ((this.router.url.includes('update') || this.router.url.includes('statistics') 
-        || this.router.url.includes(('create-university')) || this.router.url.includes('create-faculty') 
-        || this.router.url.includes('create-programme') || this.router.url.includes('create-discipline'))
-      && dbUser.role === Role.ADMIN) {
-      
+    this.userService.getObjectById(userId)
+      .subscribe(user => this.currentUser = user);
+    
+    let url = next.url
+      .map(segment => segment.path)
+      .join('/')
+      .trim();
+    
+    console.log(url);
+    console.log(this.currentUser.role);
+    if ((url.includes('statistics') || url.includes('update') 
+      || url.includes('create-uni') || url.includes('create-faculty')
+      || url.includes('create-programme') || url.includes('create-discipline'))
+      && this.currentUser.role === Role.ADMIN) {
       return true;
-    } 
-    else if ((this.router.url.includes('create-review') || this.router.url.includes('user-details')) 
-      && dbUser.role === Role.STUDENT) {
-      
+    }
+    else if((url.includes('create-review') || url.includes('user-details')) && this.currentUser.role === Role.STUDENT) {
       return true;
     }
     else {
