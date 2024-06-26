@@ -41,14 +41,14 @@ export class UserService extends BaseService<User> {
   }
 
   createUser(userId: string | undefined, user: User,
-             [universityName, facultyName, programmeName, facultyNumer, image]:
-               [string, string, string, string, string]) {
+             [universityName, facultyName, programmeName, facultyNumber]:
+               [string, string, string, string]) {
 
     if (userId) {
       this.userRepository.createObject(userId, user);
       this.userRequestService.createObject(
         new UserRequest('', userId, user.username, universityName,
-          facultyName, programmeName, facultyNumer, RequestStatus.PENDING, image, new Date()));
+          facultyName, programmeName, facultyNumber, RequestStatus.PENDING, '', new Date()));
     }
   }
 }

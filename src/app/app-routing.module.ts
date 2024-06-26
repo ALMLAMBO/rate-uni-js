@@ -41,7 +41,7 @@ const routes: Routes = [
     component: UniversityDetailsComponent
   },
   {
-    path: `universities/:${environment.urlIds.university}/create`,
+    path: `universities/:${environment.urlIds.university}/update`,
     component: CreateUpdateUniversityComponent
   },
   {
