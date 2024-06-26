@@ -22,7 +22,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
       this.authService.getCurrentUser().then(user => {
-        console.log(user);
+        
       })
       this.router.navigate(['/']);
     }
