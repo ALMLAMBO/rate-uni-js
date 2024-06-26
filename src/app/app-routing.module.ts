@@ -26,6 +26,7 @@ import {
   CreateUpdateDisciplineComponent
 } from "./components/discipline/create-update-discipline/create-update-discipline.component";
 import {CreateReviewComponent} from "./components/review/create-review/create-review.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
   },
   {
     path: `universities/:${environment.urlIds.university}/update`,
-    component: CreateUpdateUniversityComponent
+    component: CreateUpdateUniversityComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties`,
@@ -54,7 +56,8 @@ const routes: Routes = [
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/update`,
-    component: CreateUpdateFacultyComponent
+    component: CreateUpdateFacultyComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes`,
@@ -62,11 +65,12 @@ const routes: Routes = [
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}`,
-    component: ProgrammeDetailsComponent
+    component: ProgrammeDetailsComponent,
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/update`,
-    component: CreateUpdateProgrammeComponent
+    component: CreateUpdateProgrammeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/disciplines`,
@@ -78,7 +82,8 @@ const routes: Routes = [
   },
   {
     path: `universities/:${environment.urlIds.university}/faculties/:${environment.urlIds.faculty}/programmes/:${environment.urlIds.programme}/disciplines/:${environment.urlIds.discipline}/update`,
-    component: CreateUpdateDisciplineComponent
+    component: CreateUpdateDisciplineComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -90,31 +95,38 @@ const routes: Routes = [
   },
   {
     path: 'user-details',
-    component: UserDetailsComponent
+    component: UserDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'statistics',
-    component: AdminStatisticsComponent
+    component: AdminStatisticsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-uni',
-    component: CreateUpdateUniversityComponent
+    component: CreateUpdateUniversityComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-faculty',
-    component: CreateUpdateFacultyComponent
+    component: CreateUpdateFacultyComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-programme',
-    component: CreateUpdateProgrammeComponent
+    component: CreateUpdateProgrammeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-discipline',
-    component: CreateUpdateDisciplineComponent
+    component: CreateUpdateDisciplineComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-review',
-    component: CreateReviewComponent
+    component: CreateReviewComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
